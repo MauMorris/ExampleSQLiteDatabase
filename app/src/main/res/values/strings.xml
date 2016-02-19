@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">BaseDatos1</string>
+    <string name="data_base_name">STUDENT DB</string>
+
+    <string name="name">Nombre</string>
+    <string name="last_name">Apellido</string>
+    <string name="marks">Marks</string>
+    <string name="id">ID</string>
+
+    <string name="add_data">Agrega Datos</string>
+    <string name="see_data">Muestra datos</string>
+    <string name="upDate_data">Actualiza datos</string>
 </resources>
