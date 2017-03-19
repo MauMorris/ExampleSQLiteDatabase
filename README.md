@@ -1,7 +1,7 @@
 # Base de Datos con SQLite
 Ejemplo de uso de una base de datos con el DBMS SQLite y la modificacion de la interfaz de usuario para alojar 4 botones dentro de un TableLayout.
 ## Motivacion
-Utilizacion de otro tipo de Layout, de una base de datos con queries para CRUD usando un 'Cursor' (Matriz tipo consulta a base de datos) y mostrarlos en un ListView Personalizado.
+Utilización de otro tipo de Layout, de una base de datos usando queries para CRUD y un 'Cursor' (Matriz tipo consulta a base de datos) para mostrar los datos en un AlertDialog Personalizado.
 ## Instalacion
 Android API 15 y posterior.
 ## Capturas
