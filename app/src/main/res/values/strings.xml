@@ -10,4 +10,5 @@
     <string name="add_data">Agrega Datos</string>
     <string name="see_data">Muestra datos</string>
     <string name="upDate_data">Actualiza datos</string>
+    <string name="delete_data">Borra datos</string>
 </resources>

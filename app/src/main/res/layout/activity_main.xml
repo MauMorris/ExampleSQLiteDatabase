@@ -7,77 +7,103 @@
     android:padding="@dimen/activity_vertical_margin"
     tools:context="com.example.mauriciogodinez.basedatos1.MainActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/data_base_name"
-        android:textSize="@dimen/standard_text"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/editText_name"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/name" />
+        android:orientation="vertical"
+        android:padding="@dimen/activity_horizontal_margin">
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/data_base_name"
+            android:textSize="@dimen/standard_text"
+            android:textStyle="bold" />
+    </LinearLayout>
 
-    <EditText
-        android:id="@+id/editText_lastName"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/last_name" />
+        android:orientation="vertical">
+        <EditText
+            android:id="@+id/editText_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/name" />
+        <EditText
+            android:id="@+id/editText_lastName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/last_name" />
+        <EditText
+            android:id="@+id/editText_marks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/marks" />
+        <EditText
+            android:id="@+id/editText_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/id" />
+    </LinearLayout>
 
-    <EditText
-        android:id="@+id/editText_marks"
+    <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/marks" />
-
-    <EditText
-        android:id="@+id/editText_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/id" />
-
-    <Button
-        android:id="@+id/button_addData"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:background="@color/orange"
-        android:onClick="addData"
-        android:text="@string/add_data" />
-
-    <Button
-        android:id="@+id/button_showData"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:background="@color/amber"
-        android:onClick="showData"
-        android:text="@string/see_data" />
-
-    <Button
-        android:id="@+id/button_upDateData"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:background="@color/green"
-        android:onClick="upDateData"
-        android:text="@string/upDate_data" />
-
-    <Button
-        android:id="@+id/button_deleteData"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:background="@color/cyan"
-        android:onClick="deleteData"
-        android:text="@string/upDate_data" />
+        android:layout_height="match_parent"
+        android:padding="@dimen/activity_padding_margin">
+        <TableRow
+            android:padding="@dimen/activity_padding_margin"
+            android:layout_weight="1">
+            <Button
+                style="?android:attr/buttonBarStyle"
+                android:id="@+id/button_addData"
+                android:layout_weight="1"
+                android:layout_column="0"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="@dimen/activity_padding_left_margin"
+                android:layout_marginRight="@dimen/activity_padding_left_margin"
+                android:background="@color/orange"
+                android:onClick="addData"
+                android:text="@string/add_data" />
+            <Button
+                style="?android:attr/buttonBarStyle"
+                android:id="@+id/button_showData"
+                android:layout_weight="1"
+                android:layout_column="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/amber"
+                android:onClick="showData"
+                android:text="@string/see_data" />
+        </TableRow>
+        <TableRow
+            android:padding="@dimen/activity_padding_margin"
+            android:layout_weight="1">
+            <Button
+                style="?android:attr/buttonBarStyle"
+                android:id="@+id/button_upDateData"
+                android:layout_weight="1"
+                android:layout_column="0"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="@dimen/activity_padding_left_margin"
+                android:layout_marginRight="@dimen/activity_padding_left_margin"
+                android:background="@color/green"
+                android:onClick="upDateData"
+                android:text="@string/upDate_data" />
+            <Button
+                style="?android:attr/buttonBarStyle"
+                android:id="@+id/button_deleteData"
+                android:layout_weight="1"
+                android:layout_column="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/cyan"
+                android:onClick="deleteData"
+                android:text="@string/delete_data" />
+        </TableRow>
+    </TableLayout>
 
 </LinearLayout>
