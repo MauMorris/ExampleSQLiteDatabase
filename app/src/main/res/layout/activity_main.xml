@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="@dimen/activity_horizontal_margin">
+
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
@@ -26,84 +27,96 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <EditText
             android:id="@+id/editText_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/name" />
+            android:hint="@string/name"
+            android:maxLength="@integer/max_length_edit_text"
+            android:maxLines="@integer/max_lines_database_edit_text" />
+
         <EditText
             android:id="@+id/editText_lastName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/last_name" />
+            android:hint="@string/last_name"
+            android:maxLength="@integer/max_length_edit_text"
+            android:maxLines="@integer/max_lines_database_edit_text" />
+
         <EditText
             android:id="@+id/editText_marks"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/marks" />
+            android:hint="@string/marks"
+            android:maxLength="@integer/max_length_edit_text"
+            android:maxLines="@integer/max_lines_database_edit_text" />
+
         <EditText
             android:id="@+id/editText_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/id" />
+            android:hint="@string/id"
+            android:inputType="number"
+            android:maxLength="@integer/max_length_edit_text"
+            android:maxLines="@integer/max_lines_database_edit_text" />
     </LinearLayout>
 
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="@dimen/activity_padding_margin">
+
         <TableRow
-            android:padding="@dimen/activity_padding_margin"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:padding="@dimen/activity_padding_margin">
+
             <Button
-                style="?android:attr/buttonBarStyle"
                 android:id="@+id/button_addData"
-                android:layout_weight="1"
-                android:layout_column="0"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="@dimen/activity_padding_left_margin"
-                android:layout_marginRight="@dimen/activity_padding_left_margin"
-                android:background="@color/orange"
-                android:onClick="addData"
-                android:text="@string/add_data" />
-            <Button
                 style="?android:attr/buttonBarStyle"
-                android:id="@+id/button_showData"
-                android:layout_weight="1"
-                android:layout_column="1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_column="0"
+                android:layout_marginEnd="@dimen/activity_padding_left_margin"
+                android:layout_weight="1"
+                android:background="@color/orange"
+                android:text="@string/add_data" />
+
+            <Button
+                android:id="@+id/button_showData"
+                style="?android:attr/buttonBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="1"
+                android:layout_weight="1"
                 android:background="@color/amber"
-                android:onClick="showData"
                 android:text="@string/see_data" />
         </TableRow>
+
         <TableRow
-            android:padding="@dimen/activity_padding_margin"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:padding="@dimen/activity_padding_margin">
+
             <Button
-                style="?android:attr/buttonBarStyle"
                 android:id="@+id/button_upDateData"
-                android:layout_weight="1"
-                android:layout_column="0"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="@dimen/activity_padding_left_margin"
-                android:layout_marginRight="@dimen/activity_padding_left_margin"
-                android:background="@color/green"
-                android:onClick="upDateData"
-                android:text="@string/upDate_data" />
-            <Button
                 style="?android:attr/buttonBarStyle"
-                android:id="@+id/button_deleteData"
-                android:layout_weight="1"
-                android:layout_column="1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_column="0"
+                android:layout_marginEnd="@dimen/activity_padding_left_margin"
+                android:layout_weight="1"
+                android:background="@color/green"
+                android:text="@string/upDate_data" />
+
+            <Button
+                android:id="@+id/button_deleteData"
+                style="?android:attr/buttonBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="1"
+                android:layout_weight="1"
                 android:background="@color/cyan"
-                android:onClick="deleteData"
                 android:text="@string/delete_data" />
         </TableRow>
     </TableLayout>
-
 </LinearLayout>

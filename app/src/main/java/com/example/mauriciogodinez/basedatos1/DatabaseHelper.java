@@ -32,7 +32,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXIST " + TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
     }
 
@@ -52,8 +52,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public Cursor getAllData(){
         SQLiteDatabase db = this.getWritableDatabase();
 
-        Cursor res = db.rawQuery("select * from " + TABLE_NAME, null);
-        return res;
+        return db.rawQuery("select * from " + TABLE_NAME, null);
     }
 
     public boolean upDateDataNow(String id, String name, String lastName, String marks){
