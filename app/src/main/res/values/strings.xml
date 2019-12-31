@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">BaseDatos1</string>
     <string name="data_base_name">STUDENT DB</string>
 
@@ -11,4 +11,19 @@
     <string name="see_data">Muestra datos</string>
     <string name="upDate_data">Actualiza datos</string>
     <string name="delete_data">Borra datos</string>
+
+    <string name="title_alert_data">Data</string>
+    <string name="message_alert_inserted">Data Inserted</string>
+    <string name="message_alert_updated">Data Updated</string>
+    <string name="message_alert_deleted">Data Deleted</string>
+    <string name="title_alert_error">Error</string>
+    <string name="message_alert_nothing_found">Nothing Found</string>
+    <string name="message_alert_nothing_inserted">Data no Inserted</string>
+    <string name="message_alert_nothing_updated">Data no Updated</string>
+    <string name="message_alert_nothing_deleted">Data no Deleted</string>
+
+    <string name="etiqueta_id">Id :<xliff:g id="id" example = "1">%s</xliff:g></string>
+    <string name="etiqueta_name">Name :<xliff:g id="name" example = "John">%s</xliff:g></string>
+    <string name="etiqueta_lastname">Lastname :<xliff:g id="lastname" example = "Perez">%s</xliff:g></string>
+    <string name="etiqueta_marks">Marks :<xliff:g id="marks" example = "1">%s</xliff:g></string>
 </resources>

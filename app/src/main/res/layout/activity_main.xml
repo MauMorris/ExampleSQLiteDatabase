@@ -64,18 +64,16 @@
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:padding="@dimen/activity_padding_margin">
 
-        <TableRow
-            android:layout_weight="1"
-            android:padding="@dimen/activity_padding_margin">
+        <TableRow android:padding="@dimen/activity_padding_margin">
 
             <Button
                 android:id="@+id/button_addData"
                 style="?android:attr/buttonBarStyle"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_column="0"
                 android:layout_marginEnd="@dimen/activity_padding_left_margin"
                 android:layout_weight="1"
@@ -86,22 +84,20 @@
                 android:id="@+id/button_showData"
                 style="?android:attr/buttonBarStyle"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_column="1"
                 android:layout_weight="1"
                 android:background="@color/amber"
                 android:text="@string/see_data" />
         </TableRow>
 
-        <TableRow
-            android:layout_weight="1"
-            android:padding="@dimen/activity_padding_margin">
+        <TableRow android:padding="@dimen/activity_padding_margin">
 
             <Button
                 android:id="@+id/button_upDateData"
                 style="?android:attr/buttonBarStyle"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_column="0"
                 android:layout_marginEnd="@dimen/activity_padding_left_margin"
                 android:layout_weight="1"
@@ -112,11 +108,20 @@
                 android:id="@+id/button_deleteData"
                 style="?android:attr/buttonBarStyle"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_column="1"
                 android:layout_weight="1"
                 android:background="@color/cyan"
                 android:text="@string/delete_data" />
         </TableRow>
     </TableLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:scrollbars="vertical">
+
+    </android.support.v7.widget.RecyclerView>
 </LinearLayout>
