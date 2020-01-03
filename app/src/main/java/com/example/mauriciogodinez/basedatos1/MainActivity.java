@@ -1,7 +1,6 @@
 package com.example.mauriciogodinez.basedatos1;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -65,8 +64,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mAdapter = new MyAdapter(this, this);
         mResultRecyclerView.setAdapter(mAdapter);
 
-        mAdapter.setData(myDb.getAllData());
-
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
                 ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
@@ -78,33 +75,66 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-                long id = (long) viewHolder.itemView.getTag();
-                deleteData(String.valueOf(id));
-                mAdapter.swapCursor(myDb.getAllData());
+                final long id = (long) viewHolder.itemView.getTag();
+
+                DatabaseExecutors.getInstance().diskIO().execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                deleteData(String.valueOf(id));
+                                mAdapter.swapCursor(myDb.getAllData());
+                            }
+                        });
+                    }
+                });
             }
         }).attachToRecyclerView(mResultRecyclerView);
+
+        DatabaseExecutors.getInstance().diskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mAdapter.setData(myDb.getAllData());
+                    }
+                });
+            }
+        });
     }
 
     @Override
     public void onClick(View view) {
-        int itemId = view.getId();
+        final int itemId = view.getId();
 
-        switch (itemId){
-            case R.id.button_addData:
-                addData();
-                break;
-            case R.id.button_showData:
-                showData();
-                break;
-            case R.id.button_upDateData:
-                upDateData();
-                break;
-            case R.id.button_deleteData:
-                deleteData(idEditText.getText().toString());
-                break;
-            default:
-                break;
-        }
+        DatabaseExecutors.getInstance().diskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        switch (itemId){
+                            case R.id.button_addData:
+                                addData();
+                                break;
+                            case R.id.button_showData:
+                                showData();
+                                break;
+                            case R.id.button_upDateData:
+                                upDateData();
+                                break;
+                            case R.id.button_deleteData:
+                                deleteData(idEditText.getText().toString());
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                });
+            }
+        });
     }
 
     public void addData() {
