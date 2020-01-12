@@ -84,6 +84,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onChanged(@Nullable DatabaseHelper databaseHelper) {
                 if (databaseHelper != null) {
                     mAdapter.setData(databaseHelper.getAllData());
+
+                    mMainBinding.editTextName.getText().clear();
+                    mMainBinding.editTextLastName.getText().clear();
+                    mMainBinding.editTextMarks.getText().clear();
+                    mMainBinding.editTextId.getText().clear();
                 }
             }
         });
@@ -132,9 +137,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else
             showMessage(getString(R.string.title_alert_error), getString(R.string.message_alert_nothing_inserted));
 
-        mMainBinding.editTextName.getText().clear();
-        mMainBinding.editTextLastName.getText().clear();
-        mMainBinding.editTextMarks.getText().clear();
     }
 
     public void showData() {
@@ -166,11 +168,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         else
             showMessage(getString(R.string.title_alert_error), getString(R.string.message_alert_nothing_updated));
-
-        mMainBinding.editTextName.getText().clear();
-        mMainBinding.editTextLastName.getText().clear();
-        mMainBinding.editTextMarks.getText().clear();
-        mMainBinding.editTextId.getText().clear();
     }
 
     public void deleteData(String id) {
