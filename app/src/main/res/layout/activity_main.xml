@@ -1,127 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="@dimen/activity_vertical_margin"
-    tools:context="com.example.mauriciogodinez.basedatos1.MainActivity">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/activity_horizontal_margin">
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="@string/data_base_name"
-            android:textSize="@dimen/standard_text"
-            android:textStyle="bold" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <EditText
-            android:id="@+id/editText_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/name"
-            android:maxLength="@integer/max_length_edit_text"
-            android:maxLines="@integer/max_lines_database_edit_text" />
-
-        <EditText
-            android:id="@+id/editText_lastName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/last_name"
-            android:maxLength="@integer/max_length_edit_text"
-            android:maxLines="@integer/max_lines_database_edit_text" />
-
-        <EditText
-            android:id="@+id/editText_marks"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/marks"
-            android:maxLength="@integer/max_length_edit_text"
-            android:maxLines="@integer/max_lines_database_edit_text" />
-
-        <EditText
-            android:id="@+id/editText_id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/id"
-            android:inputType="number"
-            android:maxLength="@integer/max_length_edit_text"
-            android:maxLines="@integer/max_lines_database_edit_text" />
-    </LinearLayout>
-
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/activity_padding_margin">
-
-        <TableRow android:padding="@dimen/activity_padding_margin">
-
-            <Button
-                android:id="@+id/button_addData"
-                style="?android:attr/buttonBarStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_column="0"
-                android:layout_marginEnd="@dimen/activity_padding_left_margin"
-                android:layout_weight="1"
-                android:background="@color/orange"
-                android:text="@string/add_data" />
-
-            <Button
-                android:id="@+id/button_showData"
-                style="?android:attr/buttonBarStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:layout_weight="1"
-                android:background="@color/amber"
-                android:text="@string/see_data" />
-        </TableRow>
-
-        <TableRow android:padding="@dimen/activity_padding_margin">
-
-            <Button
-                android:id="@+id/button_upDateData"
-                style="?android:attr/buttonBarStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_column="0"
-                android:layout_marginEnd="@dimen/activity_padding_left_margin"
-                android:layout_weight="1"
-                android:background="@color/green"
-                android:text="@string/upDate_data" />
-
-            <Button
-                android:id="@+id/button_deleteData"
-                style="?android:attr/buttonBarStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:layout_weight="1"
-                android:background="@color/cyan"
-                android:text="@string/delete_data" />
-        </TableRow>
-    </TableLayout>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view"
+<layout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:scrollbars="vertical">
+        android:orientation="vertical"
+        android:padding="@dimen/activity_vertical_margin"
+        tools:context="com.example.mauriciogodinez.basedatos1.MainActivity">
 
-    </android.support.v7.widget.RecyclerView>
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/activity_horizontal_margin">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/data_base_name"
+                android:textSize="@dimen/standard_text"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/editText_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/name"
+                android:maxLength="@integer/max_length_edit_text"
+                android:maxLines="@integer/max_lines_database_edit_text" />
+
+            <EditText
+                android:id="@+id/editText_lastName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/last_name"
+                android:maxLength="@integer/max_length_edit_text"
+                android:maxLines="@integer/max_lines_database_edit_text" />
+
+            <EditText
+                android:id="@+id/editText_marks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/marks"
+                android:maxLength="@integer/max_length_edit_text"
+                android:maxLines="@integer/max_lines_database_edit_text" />
+
+            <EditText
+                android:id="@+id/editText_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/id"
+                android:inputType="number"
+                android:maxLength="@integer/max_length_edit_text"
+                android:maxLines="@integer/max_lines_database_edit_text" />
+        </LinearLayout>
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/activity_padding_margin">
+
+            <TableRow android:padding="@dimen/activity_padding_margin">
+
+                <Button
+                    android:id="@+id/button_addData"
+                    style="?android:attr/buttonBarStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:layout_marginEnd="@dimen/activity_padding_left_margin"
+                    android:layout_weight="1"
+                    android:background="@color/orange"
+                    android:text="@string/add_data" />
+
+                <Button
+                    android:id="@+id/button_showData"
+                    style="?android:attr/buttonBarStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_weight="1"
+                    android:background="@color/amber"
+                    android:text="@string/see_data" />
+            </TableRow>
+
+            <TableRow android:padding="@dimen/activity_padding_margin">
+
+                <Button
+                    android:id="@+id/button_upDateData"
+                    style="?android:attr/buttonBarStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:layout_marginEnd="@dimen/activity_padding_left_margin"
+                    android:layout_weight="1"
+                    android:background="@color/green"
+                    android:text="@string/upDate_data" />
+
+                <Button
+                    android:id="@+id/button_deleteData"
+                    style="?android:attr/buttonBarStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_weight="1"
+                    android:background="@color/cyan"
+                    android:text="@string/delete_data" />
+            </TableRow>
+        </TableLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:scrollbars="vertical">
+
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+</layout>

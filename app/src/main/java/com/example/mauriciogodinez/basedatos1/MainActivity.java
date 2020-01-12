@@ -2,6 +2,7 @@ package com.example.mauriciogodinez.basedatos1;
 
 import android.app.AlertDialog;
 import android.database.Cursor;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -9,27 +10,16 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.mauriciogodinez.basedatos1.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, ViewHolderCallback {
 
     DatabaseHelper myDb;
-
-    protected EditText nameEditText;
-    protected EditText lastNameEditText;
-    protected EditText marksEditText;
-    protected EditText idEditText;
-
-    protected RecyclerView mResultRecyclerView;
     protected MyAdapter mAdapter;
 
-    protected Button addDataButton;
-    protected Button showDataButton;
-    protected Button updateDataButton;
-    protected Button deleteDataButton;
-
+    private ActivityMainBinding mMainBinding;
     boolean isInserted;
 
     @Override
@@ -39,30 +29,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         myDb = new DatabaseHelper(this);
 
-        nameEditText = findViewById(R.id.editText_name);
-        lastNameEditText = findViewById(R.id.editText_lastName);
-        marksEditText = findViewById(R.id.editText_marks);
-        idEditText = findViewById(R.id.editText_id);
+        mMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
-        addDataButton = findViewById(R.id.button_addData);
-        showDataButton = findViewById(R.id.button_showData);
-        updateDataButton = findViewById(R.id.button_upDateData);
-        deleteDataButton = findViewById(R.id.button_deleteData);
+        mMainBinding.buttonAddData.setOnClickListener(this);
+        mMainBinding.buttonShowData.setOnClickListener(this);
+        mMainBinding.buttonUpDateData.setOnClickListener(this);
+        mMainBinding.buttonDeleteData.setOnClickListener(this);
 
-        addDataButton.setOnClickListener(this);
-        showDataButton.setOnClickListener(this);
-        updateDataButton.setOnClickListener(this);
-        deleteDataButton.setOnClickListener(this);
-
-        mResultRecyclerView = findViewById(R.id.recycler_view);
-        mResultRecyclerView.setHasFixedSize(true);
+        mMainBinding.recyclerView.setHasFixedSize(true);
         // usa linear layout manager
         LinearLayoutManager mLayoutManager = new
                 LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        mResultRecyclerView.setLayoutManager(mLayoutManager);
+        mMainBinding.recyclerView.setLayoutManager(mLayoutManager);
 
         mAdapter = new MyAdapter(this, this);
-        mResultRecyclerView.setAdapter(mAdapter);
+        mMainBinding.recyclerView.setAdapter(mAdapter);
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
                 ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
@@ -90,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 });
             }
-        }).attachToRecyclerView(mResultRecyclerView);
+        }).attachToRecyclerView(mMainBinding.recyclerView);
 
         DatabaseExecutors.getInstance().diskIO().execute(new Runnable() {
             @Override
@@ -126,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 upDateData();
                                 break;
                             case R.id.button_deleteData:
-                                deleteData(idEditText.getText().toString());
+                                deleteData(mMainBinding.editTextId.getText().toString());
                                 break;
                             default:
                                 break;
@@ -138,19 +119,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void addData() {
-        isInserted = myDb.insertData(nameEditText.getText().toString(),
-                lastNameEditText.getText().toString(),
-                marksEditText.getText().toString());
+        isInserted = myDb.insertData(mMainBinding.editTextName.getText().toString(),
+                mMainBinding.editTextLastName.getText().toString(),
+                mMainBinding.editTextMarks.getText().toString());
+
         if (isInserted){
             showToast(getString(R.string.message_alert_inserted));
             mAdapter.setData(myDb.getAllData());
-        }
-        else
+        } else
             showMessage(getString(R.string.title_alert_error), getString(R.string.message_alert_nothing_inserted));
 
-        nameEditText.getText().clear();
-        lastNameEditText.getText().clear();
-        marksEditText.getText().clear();
+        mMainBinding.editTextName.getText().clear();
+        mMainBinding.editTextLastName.getText().clear();
+        mMainBinding.editTextMarks.getText().clear();
     }
 
     public void showData() {
@@ -171,10 +152,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void upDateData() {
-        boolean isUpdate = myDb.upDateDataNow(idEditText.getText().toString(),
-                nameEditText.getText().toString(),
-                lastNameEditText.getText().toString(),
-                marksEditText.getText().toString());
+        boolean isUpdate = myDb.upDateDataNow(mMainBinding.editTextId.getText().toString(),
+                mMainBinding.editTextName.getText().toString(),
+                mMainBinding.editTextLastName.getText().toString(),
+                mMainBinding.editTextMarks.getText().toString());
 
         if (isUpdate){
             showToast(getString(R.string.message_alert_updated));
@@ -183,10 +164,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         else
             showMessage(getString(R.string.title_alert_error), getString(R.string.message_alert_nothing_updated));
 
-        nameEditText.getText().clear();
-        lastNameEditText.getText().clear();
-        marksEditText.getText().clear();
-        idEditText.getText().clear();
+        mMainBinding.editTextName.getText().clear();
+        mMainBinding.editTextLastName.getText().clear();
+        mMainBinding.editTextMarks.getText().clear();
+        mMainBinding.editTextId.getText().clear();
     }
 
     public void deleteData(String id) {
