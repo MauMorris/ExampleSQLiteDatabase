@@ -1,10 +1,13 @@
 package com.example.mauriciogodinez.basedatos1;
 
 import android.app.AlertDialog;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.database.Cursor;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private ActivityMainBinding mMainBinding;
     boolean isInserted;
+    private DatabaseViewModel mViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +69,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             @Override
                             public void run() {
                                 deleteData(String.valueOf(id));
-                                mAdapter.swapCursor(myDb.getAllData());
                             }
                         });
                     }
@@ -73,15 +76,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }).attachToRecyclerView(mMainBinding.recyclerView);
 
-        DatabaseExecutors.getInstance().diskIO().execute(new Runnable() {
+        DatabaseViewModelFactory factory = new DatabaseViewModelFactory(myDb);
+        mViewModel = ViewModelProviders.of(this, factory).get(DatabaseViewModel.class);
+
+        mViewModel.getCurrentData().observe(this, new Observer<DatabaseHelper>() {
             @Override
-            public void run() {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        mAdapter.setData(myDb.getAllData());
-                    }
-                });
+            public void onChanged(@Nullable DatabaseHelper databaseHelper) {
+                if (databaseHelper != null) {
+                    mAdapter.setData(databaseHelper.getAllData());
+                }
             }
         });
     }
@@ -125,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if (isInserted){
             showToast(getString(R.string.message_alert_inserted));
-            mAdapter.setData(myDb.getAllData());
+            mViewModel.getCurrentData().setValue(myDb);
         } else
             showMessage(getString(R.string.title_alert_error), getString(R.string.message_alert_nothing_inserted));
 
@@ -159,7 +162,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if (isUpdate){
             showToast(getString(R.string.message_alert_updated));
-            mAdapter.setData(myDb.getAllData());
+            mViewModel.getCurrentData().setValue(myDb);
         }
         else
             showMessage(getString(R.string.title_alert_error), getString(R.string.message_alert_nothing_updated));
@@ -174,7 +177,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Integer deletedRows = myDb.deleteDataNow(id);
         if (deletedRows > 0){
             showToast(getString(R.string.message_alert_deleted));
-            mAdapter.setData(myDb.getAllData());
+            mViewModel.getCurrentData().setValue(myDb);
         }
         else
             showMessage(getString(R.string.title_alert_error), getString(R.string.message_alert_nothing_deleted));
